@@ -1,0 +1,7 @@
+{
+  "require": {
+      "videlalvaro/php-amqplib": "2.2.*",
+      "silex/silex": "~1.2"
+  }
+}
+
