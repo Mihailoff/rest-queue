@@ -30,7 +30,8 @@ $app->get('/user/{user_id}', function($user_id) use($app) {
         ]);
     }
     else {
-        $created = create_task($user_id);
+        $created_ts = create_task($user_id);
+        $created = DateTime::createFromFormat('U', $created_ts)->format(DateTime::W3C);
         
         // HTTP ACCEPTED
         return $app->json([
