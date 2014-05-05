@@ -12,13 +12,13 @@ $app->get('/', function() use($app) {
 });
 
 $app->get('/user/{user_id}', function($user_id) use($app) {
-    if (file_exists(__DIR__ . '/processing.' . $user_id)) {
+    if (file_exists(__DIR__ . '/var/processing.' . $user_id)) {
         // HTTP NO CONTENT
         return $app->json(['status' => 'processing'], 204);
     }
 
-    if (file_exists(__DIR__ . '/cache.' . $user_id)) {
-        $raw_data = file_get_contents(__DIR__ . '/cache.' . $user_id);
+    if (file_exists(__DIR__ . '/var/cache.' . $user_id)) {
+        $raw_data = file_get_contents(__DIR__ . '/var/cache.' . $user_id);
         $data = unserialize($raw_data);
         $created = DateTime::createFromFormat('U', $data['creation_datetime'])->format(DateTime::W3C);
         $finished = DateTime::createFromFormat('U', $data['ready_datetime'])->format(DateTime::W3C);

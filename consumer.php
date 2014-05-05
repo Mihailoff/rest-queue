@@ -24,8 +24,8 @@ $ch->queue_bind($queue, $exchange);
 function process_message($msg)
 {
     $task = unserialize($msg->body);
-    $pid = __DIR__ . '/processing.' . $task['id'];
-    $result = __DIR__ . '/cache.' . $task['id'];
+    $pid = __DIR__ . '/var/processing.' . $task['id'];
+    $result = __DIR__ . '/var/cache.' . $task['id'];
     if (!file_exists($pid)) {
         file_put_contents($pid, '');
     }
